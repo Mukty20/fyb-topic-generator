@@ -38,9 +38,7 @@ const Landing = () => {
 
       {/* Hero */}
       <section className="text-center px-8 pt-24 pb-28 max-w-4xl mx-auto">
-        <span className="text-sm text-gray-400 tracking-wide">
-          For final year undergraduate students
-        </span>
+       
         <h2 className="text-5xl font-semibold leading-tight mt-5 mb-6 text-gray-900">
           Find a project topic <br /> that actually matters.
         </h2>
@@ -54,7 +52,7 @@ const Landing = () => {
             onClick={() => navigate("/signup")}
             className="px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition"
           >
-            Begin guided setup →
+            Begin guided setup
           </button>
           <button
             onClick={() => navigate("/login")}
