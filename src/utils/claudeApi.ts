@@ -39,126 +39,130 @@ export const generateTopics = async (
   complexityLevel: string,
   realWorldProblem: string
 ): Promise<string> => {
-  const prompt = `You are an academic project advisor for final year undergraduate students in Nigerian universities studying ${discipline}.
+  // Mock response — replace with real API call when you have credits
+  console.log("Prompting with:", { discipline, areaOfInterest, tools, complexityLevel, realWorldProblem });
 
-A student has provided the following profile:
-- Area of Interest: ${areaOfInterest}
-- Tools and Languages they know: ${tools}
-- Preferred Complexity Level: ${complexityLevel}
-- Real world problem they have observed: ${realWorldProblem}
-
-Generate exactly 5 relevant, original, and problem-solving final year project topic suggestions tailored specifically to this student's profile.
-
-For each topic provide:
-1. Topic Title
-2. Brief Description (2 sentences)
-3. Why it is relevant right now (1 sentence)
-
-Format your response as JSON only, no extra text, like this:
-{
-  "topics": [
-    {
-      "title": "topic title here",
-      "description": "description here",
-      "relevance": "relevance here"
-    }
-  ]
-}`;
-
-  return callClaude(prompt);
+  return JSON.stringify({
+    topics: [
+      {
+        title: `Smart ${areaOfInterest} System for ${discipline} Students`,
+        description: `A ${complexityLevel.toLowerCase()} web-based platform that leverages ${tools} to address common challenges faced by ${discipline} students in Nigerian universities.`,
+        relevance: `Directly addresses the real problem of ${realWorldProblem.slice(0, 60)}... using modern technology.`
+      },
+      {
+        title: `Automated ${areaOfInterest} Management Platform`,
+        description: `A system built with ${tools} that automates key processes in ${areaOfInterest}, reducing manual effort and improving efficiency for end users.`,
+        relevance: `Highly relevant in Nigerian institutions where manual processes still dominate most workflows.`
+      },
+      {
+        title: `${discipline} Student Performance Tracking System`,
+        description: `A ${complexityLevel.toLowerCase()} dashboard that tracks and visualizes student academic performance using ${tools}, helping lecturers identify struggling students early.`,
+        relevance: `Addresses the lack of data-driven academic support in most Nigerian tertiary institutions.`
+      },
+      {
+        title: `Community Problem Reporting and Resolution System`,
+        description: `A platform using ${tools} that allows community members to report local problems and track their resolution by relevant authorities.`,
+        relevance: `Directly inspired by the real world problem of ${realWorldProblem.slice(0, 50)}... and provides a structured digital solution.`
+      },
+      {
+        title: `${areaOfInterest}-Based Resource Allocation System`,
+        description: `A ${complexityLevel.toLowerCase()} system built with ${tools} that intelligently allocates resources based on demand patterns and priority levels.`,
+        relevance: `Solves a practical resource management challenge common across Nigerian universities and organizations.`
+      }
+    ]
+  });
 };
 
-// Stage 3 — Generate topic development and roadmap
 export const generateTopicDevelopment = async (
   selectedTopic: string,
   discipline: string,
-  complexityLevel: string
+  // complexityLevel: string
 ): Promise<string> => {
-  const prompt = `You are an academic project advisor for final year undergraduate students in Nigerian universities.
+  console.log("Developing topic:", selectedTopic);
 
-A student has selected this final year project topic: "${selectedTopic}"
-Discipline: ${discipline}
-Complexity Level: ${complexityLevel}
-
-Help the student think through their topic by providing:
-1. The core problem this topic addresses
-2. Who is most affected by this problem
-3. How the proposed system will solve it
-4. What makes this approach different from existing solutions
-5. A step by step roadmap of how to approach this project
-
-Format your response as JSON only, no extra text, like this:
-{
-  "problem": "the core problem here",
-  "affected": "who is affected here",
-  "solution": "how it solves the problem here",
-  "difference": "what makes it different here",
-  "roadmap": [
-    {
-      "step": 1,
-      "title": "step title here",
-      "description": "step description here"
-    }
-  ]
-}`;
-
-  return callClaude(prompt);
+  return JSON.stringify({
+    problem: `Many ${discipline} students and institutions struggle with inefficient processes that ${selectedTopic.toLowerCase()} aims to solve.`,
+    affected: `Final year ${discipline} students, lecturers, and administrative staff at Nigerian tertiary institutions.`,
+    solution: `The system will provide a structured, digital approach to solving this problem using modern web technologies, making the process faster, more accurate, and accessible.`,
+    difference: `Unlike existing manual approaches, this system is automated, data-driven, and specifically designed for the Nigerian academic context.`,
+    roadmap: [
+      {
+        step: 1,
+        title: "Define the Problem",
+        description: "Clearly identify the specific problem your system will solve and document it with evidence from your institution."
+      },
+      {
+        step: 2,
+        title: "Review Existing Solutions",
+        description: "Research what tools or systems currently exist and identify the gaps your project will address."
+      },
+      {
+        step: 3,
+        title: "Design Your System",
+        description: "Plan your system architecture, database structure, user interface, and data flow diagrams."
+      },
+      {
+        step: 4,
+        title: "Build and Test",
+        description: "Develop the system module by module, testing each component before moving to the next."
+      },
+      {
+        step: 5,
+        title: "Evaluate and Document",
+        description: "Test with real users, collect feedback, analyze results, and document your findings thoroughly."
+      }
+    ]
+  });
 };
 
-// Stage 4 — Generate research kickstart
 export const generateResearchKickstart = async (
   selectedTopic: string,
   discipline: string
 ): Promise<string> => {
-  const prompt = `You are an academic research advisor for final year undergraduate students in Nigerian universities.
+  console.log("Research kickstart for:", selectedTopic);
 
-A student is working on this final year project topic: "${selectedTopic}"
-Discipline: ${discipline}
-
-Help the student get started on their literature review by providing:
-1. Five key concepts they should read about
-2. Three related technology areas to explore
-3. Two recommended search terms to use on Google Scholar
-
-Format your response as JSON only, no extra text, like this:
-{
-  "keyConcepts": ["concept 1", "concept 2", "concept 3", "concept 4", "concept 5"],
-  "relatedAreas": ["area 1", "area 2", "area 3"],
-  "searchTerms": ["search term 1", "search term 2"]
-}`;
-
-  return callClaude(prompt);
+  return JSON.stringify({
+    keyConcepts: [
+      "System Analysis and Design",
+      "Database Management Systems",
+      "Web Application Development",
+      "User Interface Design Principles",
+      "Software Testing and Evaluation"
+    ],
+    relatedAreas: [
+      "Human Computer Interaction",
+      "Information Systems Management",
+      "Cloud Computing and Deployment"
+    ],
+    searchTerms: [
+      `${selectedTopic} Nigerian universities`,
+      `${discipline} management system developing countries`
+    ]
+  });
 };
 
-// Stage 5 — Generate project timeline
 export const generateTimeline = async (
   selectedTopic: string,
   complexityLevel: string
 ): Promise<string> => {
-  const prompt = `You are an academic project advisor for final year undergraduate students in Nigerian universities.
+  console.log("Timeline for:", selectedTopic, complexityLevel);
 
-A student is working on this final year project topic: "${selectedTopic}"
-Complexity Level: ${complexityLevel}
+  const durations: Record<string, string[]> = {
+    Basic: ["Week 1 - 2", "Week 3 - 4", "Week 5 - 6", "Week 7 - 9", "Week 10 - 11", "Week 12 - 13"],
+    Intermediate: ["Week 1 - 2", "Week 3 - 5", "Week 6 - 7", "Week 8 - 11", "Week 12 - 13", "Week 14 - 15"],
+    Advanced: ["Week 1 - 2", "Week 3 - 6", "Week 7 - 8", "Week 9 - 13", "Week 14 - 15", "Week 16 - 17"]
+  };
 
-Generate a realistic phase by phase project timeline for this student to complete their final year project from start to submission.
+  const d = durations[complexityLevel] || durations["Intermediate"];
 
-Adjust the duration of each phase based on the complexity level:
-- Basic: shorter durations
-- Intermediate: moderate durations  
-- Advanced: longer durations
-
-Format your response as JSON only, no extra text, like this:
-{
-  "timeline": [
-    {
-      "phase": "Phase 1 — Topic Selection and Proposal",
-      "activity": "activity description here",
-      "duration": "Week 1 - 2"
-    }
-  ]
-}
-
-Include these phases: Topic Selection and Proposal, Literature Review, System Analysis and Design, Development and Implementation, Testing and Evaluation, Documentation and Submission.`;
-
-  return callClaude(prompt);
+  return JSON.stringify({
+    timeline: [
+      { phase: "Phase 1 — Topic Selection and Proposal", activity: "Finalize your project topic, write your proposal, and get supervisor approval.", duration: d[0] },
+      { phase: "Phase 2 — Literature Review", activity: "Research related works, review existing systems, and document your findings in Chapter Two.", duration: d[1] },
+      { phase: "Phase 3 — System Analysis and Design", activity: "Analyze requirements, design architecture, flowcharts, ER diagrams, and UI mockups.", duration: d[2] },
+      { phase: "Phase 4 — Development and Implementation", activity: "Build the system module by module, integrating all components and features.", duration: d[3] },
+      { phase: "Phase 5 — Testing and Evaluation", activity: "Conduct functional testing and user acceptance testing, collect and analyze feedback.", duration: d[4] },
+      { phase: "Phase 6 — Documentation and Submission", activity: "Complete all chapters, format the final report, and submit for assessment.", duration: d[5] }
+    ]
+  });
 };
