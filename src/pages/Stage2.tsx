@@ -34,7 +34,7 @@ function Stage2() {
             setPrompted(true);
           }
         } else {
-          // No profile found — send back to stage 1
+          // No profile found send back to stage 1
           navigate("/stage1");
         }
       } catch (err) {
@@ -313,7 +313,7 @@ function Stage2() {
               disabled={!selectedTopic}
               className="w-full py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Continue to Topic Development →
+              Continue to Topic Development
             </button>
           </div>
         )}

@@ -3,45 +3,6 @@ import { useAuth } from "../hooks/useAuth";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/config";
 
-// const stages = [
-//   // {
-//   //   number: "01",
-//   //   title: "Student Profiling",
-//   //   desc: "Tell us about your discipline, interests, skills, and complexity preference.",
-//   //   path: "/stage1"
-//   // },
-//   {
-//     number: "02",
-//     title: "Topic Prompting",
-//     desc: "Get 5 project topics prompted uniquely from your profile inputs.",
-//     path: "/stage2"
-//   },
-//   {
-//     number: "03",
-//     title: "Topic Development",
-//     desc: "Think through your chosen topic with guided questions and get a roadmap.",
-//     path: "/stage3"
-//   },
-//   {
-//     number: "04",
-//     title: "Research Kickstart",
-//     desc: "Get key concepts, related areas, and search terms for your literature review.",
-//     path: "/stage4"
-//   },
-//   {
-//     number: "05",
-//     title: "Project Timeline",
-//     desc: "Get a personalized phase by phase project plan based on your complexity level.",
-//     path: "/stage5"
-//   },
-//   {
-//     number: "06",
-//     title: "Download Your Plan",
-//     desc: "Save and download your complete project plan as a PDF.",
-//     path: "/stage6"
-//   }
-// ];
-
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -69,7 +30,6 @@ const Dashboard = () => {
           </p>
         </div>
 
-        Nav Links
         <nav className="flex flex-col gap-1 flex-1">
           <button
             onClick={() => navigate("/dashboard")}
@@ -174,7 +134,7 @@ const Dashboard = () => {
             Begin guided setup 
           </button>
         </div>
-        
+
       </main>
 
     </div>

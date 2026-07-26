@@ -286,7 +286,7 @@ const Stage1 = () => {
             <textarea
               value={realWorldProblem}
               onChange={(e) => setRealWorldProblem(e.target.value)}
-              placeholder="Describe a problem you have noticed around you — in your school, community, or daily life..."
+              placeholder="Describe a problem you have noticed around you in your school, community, or daily life..."
               rows={4}
               className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition resize-none"
             />
@@ -298,7 +298,7 @@ const Stage1 = () => {
             disabled={loading}
             className="w-full py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? "Saving your profile..." : "Continue to Topic Prompting →"}
+            {loading ? "Saving your profile..." : "Continue to Topic Prompting"}
           </button>
 
         </div>

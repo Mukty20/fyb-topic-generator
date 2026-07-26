@@ -161,7 +161,7 @@ const Landing = () => {
           onClick={() => navigate("/signup")}
           className="px-8 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition"
         >
-          Get started now →
+          Get started now 
         </button>
       </section>
 
