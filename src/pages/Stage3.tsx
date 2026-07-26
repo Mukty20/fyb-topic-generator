@@ -135,7 +135,7 @@ const Stage3 = () => {
           </h2>
           <p className="text-sm text-gray-400 leading-relaxed">
             The system will guide you through thinking about your chosen
-            topic — breaking it down into a problem, solution, and
+            topic breaking it down into a problem, solution, and
             step by step development roadmap.
           </p>
         </div>
@@ -153,7 +153,7 @@ const Stage3 = () => {
               onClick={() => navigate("/stage2")}
               className="mt-2 text-xs text-gray-400 hover:text-gray-700 transition"
             >
-              ← Change topic
+               Change topic
             </button>
           </div>
         )}
@@ -272,7 +272,7 @@ const Stage3 = () => {
                 onClick={() => navigate("/stage4")}
                 className="flex-1 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition"
               >
-                Continue to Research Kickstart →
+                Continue to Research Kickstart
               </button>
             </div>
 
