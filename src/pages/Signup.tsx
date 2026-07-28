@@ -175,7 +175,7 @@ const Signup = () => {
         </div>
 
         {/* Login link */}
-        <p className="text-center text-sm text-gray-400 mt-6">
+        <p className="text-center text-sm text-gray-400 mt-1">
           Already have an account?{" "}
           <span
             onClick={() => navigate("/login")}

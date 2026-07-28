@@ -17,7 +17,7 @@ const Landing = () => {
 
       {/* Navbar */}
       <nav className="px-8 py-5 flex justify-between items-center max-w-6xl mx-auto">
-        <h1 className="text-base font-medium tracking-tight text-gray-900">
+        <h1 className="text-base font-medium tracking-tight text-gray-800">
           FYP Topic Generator
         </h1>
         <div className="flex gap-3">
@@ -64,7 +64,7 @@ const Landing = () => {
       </section>
 
       {/* Divider */}
-      <div className="border-t border-gray-200" />
+      <div className="border-t border-gray-900" />
 
       {/* Features */}
       <section className="px-8 py-20">
@@ -96,11 +96,11 @@ const Landing = () => {
       </section>
 
       {/* Divider */}
-      <div className="border-t border-gray-200" />
+      <div className="border-t border-gray-900" />
 
       {/* What you get */}
       <section className="px-8 py-20">
-        <p className="text-xs text-gray-400 uppercase tracking-widest text-center mb-12">
+        <p className="text-xs text-gray-700 uppercase tracking-widest text-center mb-12">
           What you get
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
@@ -132,12 +132,12 @@ const Landing = () => {
           ].map((item) => (
             <div
               key={item.title}
-              className="p-6 bg-white rounded-2xl border border-gray-100 text-center hover:shadow-sm transition"
+              className="p-6 bg-[#d4dbdb] rounded-2xl border border-gray-100 text-center hover:shadow-sm transition"
             >
               <h4 className="text-sm font-semibold text-gray-900 mb-2">
                 {item.title}
               </h4>
-              <p className="text-xs text-gray-400 leading-relaxed">
+              <p className="text-xs text-gray-500 leading-relaxed">
                 {item.desc}
               </p>
             </div>
@@ -146,7 +146,7 @@ const Landing = () => {
       </section>
 
       {/* Divider */}
-      <div className="border-t border-gray-200" />
+      <div className="border-t border-gray-900" />
 
       {/* CTA */}
       <section className="px-8 py-24 text-center max-w-3xl mx-auto">
@@ -168,7 +168,8 @@ const Landing = () => {
       {/* Footer */}
       <div className="border-t border-gray-200" />
       <footer className="px-8 py-6 max-w-6xl mx-auto flex justify-between items-center text-xs text-gray-400">
-        <p>FYP Topic Generator</p>
+        <p>All Right Reserverd</p>
+        {/* <p>FYP Topic Generator</p> */}
         <p>Kaduna State University Computer Science</p>
       </footer>
 
@@ -176,4 +177,6 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default Landing;  
+
+

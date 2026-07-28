@@ -223,7 +223,7 @@ function Stage2() {
               onClick={() => navigate("/stage1")}
               className="mt-4 text-xs text-gray-400 hover:text-gray-700 transition"
             >
-              ← Edit profile
+               Edit profile
             </button>
           </div>
         )}
