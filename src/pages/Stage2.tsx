@@ -249,7 +249,7 @@ function Stage2() {
               disabled={loading}
               className="px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition disabled:opacity-50"
             >
-              {loading ? "Prompting your topics..." : "Prompt my topics →"}
+              {loading ? "Prompting your topics..." : "Prompt my topics"}
             </button>
           </div>
         )}

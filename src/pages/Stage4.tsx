@@ -175,7 +175,7 @@ const Stage4 = () => {
               disabled={loading}
               className="px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition disabled:opacity-50"
             >
-              {loading ? "Generating suggestions..." : "Get research suggestions →"}
+              {loading ? "Generating suggestions...": "Get research suggestions"}
             </button>
           </div>
         )}
@@ -241,7 +241,7 @@ const Stage4 = () => {
           }
           className="text-xs text-gray-400 hover:text-gray-700 transition ml-4 shrink-0"
         >
-          Search →
+          Search
         </button>
       </div>
     ))}

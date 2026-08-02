@@ -234,7 +234,7 @@ const Stage5 = () => {
                 }}
                 className="px-5 py-3 text-sm text-gray-500 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
               >
-                ↺ Reprompt
+                ↩Reprompt
               </button>
               <button
                 onClick={() => navigate("/stage6")}
