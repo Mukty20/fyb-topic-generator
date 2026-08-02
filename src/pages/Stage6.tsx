@@ -311,7 +311,7 @@ const Stage6 = () => {
                 disabled={generating}
                 className="px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition disabled:opacity-50"
               >
-                {generating ? "Generating PDF..." : "Download Project Plan (PDF)"}
+                {generating ? "Generating PDF..." : "Download Project Plan"}
               </button>
             </div>
 
