@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { generateResearchKickstart } from "../utils/claudeApi";
+import { checkAndIncrementUsage } from "../utils/usageLimit";
 import Layout from "../components/Layout";
 
 const Stage4 = () => {
@@ -47,6 +48,11 @@ const Stage4 = () => {
 
   const handlePrompt = async () => {
     setError("");
+    const allowed = await checkAndIncrementUsage(user!.uid);
+    if (!allowed) {
+      setError("You've reached today's limit. Please try again tomorrow.");
+      return;
+    }
     setLoading(true);
     try {
       const response = await generateResearchKickstart(selectedTopic, discipline);
@@ -100,7 +106,7 @@ const Stage4 = () => {
             disabled={loading}
             className="px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition disabled:opacity-50"
           >
-            {loading ? "Generating suggestions..." : "Get research suggestions →"}
+            {loading ? "Generating suggestions..." : "Get research suggestions"}
           </button>
         </div>
       )}

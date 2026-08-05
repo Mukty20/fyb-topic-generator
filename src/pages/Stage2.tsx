@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { generateTopics } from "../utils/claudeApi";
+import { checkAndIncrementUsage } from "../utils/usageLimit";
 import type { Topic } from "../types";
 import Layout from "../components/Layout";
 
@@ -45,6 +46,13 @@ const Stage2 = () => {
   const handlePrompt = async () => {
     if (!profile) return;
     setError("");
+    
+    const allowed = await checkAndIncrementUsage(user!.uid);
+    if (!allowed) {
+      setError("You've reached today's limit. Please try again tomorrow.");
+      return;
+    }
+
     setLoading(true);
 
     try {

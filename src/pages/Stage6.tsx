@@ -86,7 +86,7 @@ const Stage6 = () => {
       pdf.text("Personal Project Plan", margin, y);
       y += 8;
       pdf.setFontSize(11);
-      pdf.setFont("helvetica", "normal");
+      pdf.setFont("Times New Roman", "normal");
       pdf.setTextColor(100, 100, 100);
       pdf.text(`Prepared for ${user?.displayName || "Student"}`, margin, y);
       pdf.setTextColor(0, 0, 0);

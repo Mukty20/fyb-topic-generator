@@ -57,14 +57,14 @@ const Dashboard = () => {
             </h3>
             <p className="text-sm text-gray-400 mb-6 max-w-lg leading-relaxed">
               Begin with <span className="text-gray-700 font-medium">Student Profiling</span> from
-              the menu. Your inputs drive every stage that follows —
+              the menu. Your inputs drive every stage that follows
               each student gets a completely unique result based on their own profile.
             </p>
             <button
               onClick={() => navigate("/stage1")}
               className="px-5 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition"
             >
-              Begin guided setup →
+              Begin guided setup
             </button>
           </div>
 
@@ -75,7 +75,7 @@ const Dashboard = () => {
             <div className="flex flex-col gap-5">
               {[
                 { step: "01", text: "Complete your student profile so the system understands your interests and goals." },
-                { step: "02", text: "Receive 5 project topics prompted uniquely from your inputs — no two students get the same result." },
+                { step: "02", text: "Receive 5 project topics prompted uniquely from your inputs no two students get the same result." },
                 { step: "03", text: "Develop your chosen topic with guided questions and get a step by step roadmap." },
                 { step: "04", text: "Get key concepts and search terms to kick off your literature review." },
                 { step: "05", text: "Receive a personalized project timeline from proposal to submission." },
@@ -120,7 +120,7 @@ const Dashboard = () => {
                 onClick={() => navigate("/stage1")}
                 className="text-xs text-gray-400 hover:text-gray-700 transition"
               >
-                Edit →
+                Edit
               </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -149,7 +149,7 @@ const Dashboard = () => {
                   onClick={() => navigate("/stage3")}
                   className="text-xs text-gray-400 hover:text-gray-700 transition"
                 >
-                  View full stage →
+                  View full stage
                 </button>
               </div>
               <div className="flex flex-col gap-4">
@@ -176,7 +176,7 @@ const Dashboard = () => {
                   onClick={() => navigate("/stage5")}
                   className="text-xs text-gray-400 hover:text-gray-700 transition"
                 >
-                  View full stage →
+                  View full stage
                 </button>
               </div>
               <div className="flex flex-col gap-3">

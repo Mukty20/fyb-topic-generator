@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { generateTopicDevelopment } from "../utils/claudeApi";
+import { checkAndIncrementUsage } from "../utils/usageLimit";
 import Layout from "../components/Layout";
 
 const Stage3 = () => {
@@ -49,6 +50,11 @@ const Stage3 = () => {
 
   const handlePrompt = async () => {
     setError("");
+    const allowed = await checkAndIncrementUsage(user!.uid);
+    if (!allowed) {
+      setError("You've reached today's limit. Please try again tomorrow.");
+      return;
+    }
     setLoading(true);
     try {
       const response = await generateTopicDevelopment(selectedTopic, discipline, complexityLevel);
@@ -74,7 +80,7 @@ const Stage3 = () => {
         <h2 className="text-2xl font-semibold text-gray-900 mb-2">Topic Development</h2>
         <p className="text-sm text-gray-400 leading-relaxed">
           The system will guide you through thinking about your chosen
-          topic — breaking it down into a problem, solution, and
+          topic breaking it down into a problem, solution, and
           step by step development roadmap with clear guidelines and time estimates.
         </p>
       </div>
@@ -110,7 +116,7 @@ const Stage3 = () => {
             disabled={loading}
             className="px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition disabled:opacity-50"
           >
-            {loading ? "Developing your topic..." : "Develop my topic →"}
+            {loading ? "Developing your topic..." : "Develop my topic"}
           </button>
         </div>
       )}
