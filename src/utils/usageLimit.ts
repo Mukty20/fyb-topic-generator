@@ -1,7 +1,7 @@
 import { doc, getDoc, setDoc, increment } from "firebase/firestore";
 import { db } from "../firebase/config";
 
-const DAILY_LIMIT = 15; 
+const DAILY_LIMIT = 5; 
 
 export const checkAndIncrementUsage = async (uid: string): Promise<boolean> => {
   const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD

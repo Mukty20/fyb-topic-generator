@@ -52,7 +52,7 @@ const Stage6 = () => {
 
       const addWrappedText = (text: string, fontSize: number, isBold: boolean, spaceAfter: number) => {
         pdf.setFontSize(fontSize);
-        pdf.setFont("helvetica", isBold ? "bold" : "normal");
+        pdf.setFont("Times New Roman", isBold ? "bold" : "normal");
         const lines = pdf.splitTextToSize(text, maxWidth);
         lines.forEach((line: string) => {
           if (y > 275) {
@@ -75,7 +75,7 @@ const Stage6 = () => {
         pdf.rect(margin, y - 5, maxWidth, 8, "F");
         pdf.setTextColor(255, 255, 255);
         pdf.setFontSize(11);
-        pdf.setFont("helvetica", "bold");
+        pdf.setFont("Times New Roman", "bold");
         pdf.text(text.toUpperCase(), margin + 3, y);
         pdf.setTextColor(0, 0, 0);
         y += 10;

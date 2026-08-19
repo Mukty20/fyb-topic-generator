@@ -7,19 +7,34 @@ import {
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/config";
 
+const EyeIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+const EyeOffIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a18.7 18.7 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+    <path d="M1 1l22 22" />
+  </svg>
+);
+
 const Signup = () => {
   const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSignup = async () => {
     setError("");
 
-    // Validations
     if (!fullName || !email || !password || !confirmPassword) {
       setError("Please fill in all fields.");
       return;
@@ -35,19 +50,11 @@ const Signup = () => {
 
     setLoading(true);
     try {
-      // Create user in Firebase Auth
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Update display name
       await updateProfile(user, { displayName: fullName });
 
-      // Save user profile to Firestore
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         fullName,
@@ -55,10 +62,8 @@ const Signup = () => {
         createdAt: new Date().toISOString()
       });
 
-      // Redirect to dashboard
       navigate("/dashboard");
-
-   } catch (err: any) {
+    } catch (err: any) {
       console.log("Full error:", err);
       console.log("Error code:", err.code);
       console.log("Error message:", err.message);
@@ -81,7 +86,6 @@ const Signup = () => {
     <div className="min-h-screen bg-[#f5f5f0] flex items-center justify-center px-4">
       <div className="w-full max-w-md">
 
-        {/* Header */}
         <div className="text-center mb-8">
           <h1
             onClick={() => navigate("/")}
@@ -97,17 +101,14 @@ const Signup = () => {
           </p>
         </div>
 
-        {/* Form */}
         <div className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
 
-          {/* Error message */}
           {error && (
             <div className="mb-5 p-3 bg-red-50 border border-red-100 rounded-lg">
               <p className="text-sm text-red-500">{error}</p>
             </div>
           )}
 
-          {/* Full Name */}
           <div className="mb-4">
             <label className="block text-xs font-medium text-gray-500 mb-2">
               Full Name
@@ -121,7 +122,6 @@ const Signup = () => {
             />
           </div>
 
-          {/* Email */}
           <div className="mb-4">
             <label className="block text-xs font-medium text-gray-500 mb-2">
               Email Address
@@ -135,35 +135,54 @@ const Signup = () => {
             />
           </div>
 
-          {/* Password */}
+          {/* Password with show/hide toggle */}
           <div className="mb-4">
             <label className="block text-xs font-medium text-gray-500 mb-2">
               Password
             </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Minimum 6 characters"
-              className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Minimum 6 characters"
+                className="w-full px-4 py-3 pr-11 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+              </button>
+            </div>
           </div>
 
-          {/* Confirm Password */}
+          {/* Confirm Password with show/hide toggle */}
           <div className="mb-6">
             <label className="block text-xs font-medium text-gray-500 mb-2">
               Confirm Password
             </label>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Re-enter your password"
-              className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition"
-            />
+            <div className="relative">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Re-enter your password"
+                className="w-full px-4 py-3 pr-11 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 transition"
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition"
+                aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+              >
+                {showConfirmPassword ? <EyeOffIcon /> : <EyeIcon />}
+              </button>
+            </div>
           </div>
 
-          {/* Submit */}
           <button
             onClick={handleSignup}
             disabled={loading}
@@ -174,8 +193,7 @@ const Signup = () => {
 
         </div>
 
-        {/* Login link */}
-        <p className="text-center text-sm text-gray-400 mt-1">
+        <p className="text-center text-sm text-gray-400 mt-2">
           Already have an account?{" "}
           <span
             onClick={() => navigate("/login")}

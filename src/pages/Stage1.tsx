@@ -30,7 +30,8 @@ const questions: Question[] = [
       "Information Technology",
       "Software Engineering",
       "Electrical Engineering",
-      "Mechatronics Engineering",
+      "Cyber Security",
+      "Data Science",
     ],
     ack: (v) => `${v} good to know. Let's dig into specifics.`,
   },
@@ -44,7 +45,8 @@ const questions: Question[] = [
       "Artificial Intelligence",
       "Cybersecurity",
       "Data Science",
-      "Internet of Things",
+      "Machine Learning",
+      "I.O.T",
       "Networking",
       "Database Systems",
       "Cloud Computing",
@@ -206,7 +208,7 @@ const questions: Question[] = [
     ack: (v) => {
       if (v.includes("manageable")) return "Smart, realistic choice we'll keep it focused and achievable.";
       if (v.includes("stretches")) return "Good balance challenging enough to be worth it, not overwhelming.";
-      return "Bold choice — let's aim for something that really stands out.";
+      return "Bold choice let's aim for something that really stands out.";
     },
   },
 ];

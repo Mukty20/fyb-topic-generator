@@ -168,9 +168,9 @@ const Landing = () => {
       {/* Footer */}
       <div className="border-t border-gray-200" />
       <footer className="px-8 py-6 max-w-6xl mx-auto flex justify-between items-center text-xs text-gray-400">
-        <p>All Right Reserverd</p>
-        {/* <p>FYP Topic Generator</p> */}
-        <p>Kaduna State University Computer Science</p>
+        <p>Kaduna State University</p>
+        <p>All Right Reserverd &copy;2026</p>
+        <p>mukty_codes</p>
       </footer>
 
     </div>
