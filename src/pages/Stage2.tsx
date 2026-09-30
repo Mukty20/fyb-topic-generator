@@ -110,13 +110,16 @@ const Stage2 = () => {
         <div className="bg-white rounded-2xl border border-gray-100 p-6 mb-6">
           <p className="text-xs text-gray-400 uppercase tracking-widest mb-4">Your profile summary</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              { label: "Discipline", value: profile.discipline },
-              { label: "Area of Interest", value: profile.areaOfInterest },
-              { label: "Tools", value: profile.tools },
-              { label: "Complexity", value: profile.complexityLevel },
-              { label: "Preference", value: profile.preference },
-            ].map((item) => (
+          {[
+  { label: "Department", value: profile.department },
+  { label: "Area of Interest", value: profile.areaOfInterest },
+  { label: "Tools", value: profile.tools },
+  profile.beginnerPreference
+    ? { label: "Learning Path", value: profile.beginnerPreference }
+    : { label: "Skill Level", value: profile.skillLevel ? `${profile.skillLevel}/5` : "" },
+  { label: "Hardware", value: profile.hardware },
+  { label: "Complexity", value: profile.complexityLevel },
+].map((item) => (
               <div key={item.label}>
                 <p className="text-xs text-gray-400 mb-1">{item.label}</p>
                 <p className="text-sm font-medium text-gray-900">{item.value}</p>

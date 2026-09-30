@@ -82,7 +82,7 @@ const Stage6 = () => {
       };
 
       pdf.setFontSize(18);
-      pdf.setFont("helvetica", "bold");
+      pdf.setFont("Times New Roman", "bold");
       pdf.text("Personal Project Plan", margin, y);
       y += 8;
       pdf.setFontSize(11);
@@ -206,7 +206,7 @@ const Stage6 = () => {
             <p className="text-xs text-gray-400 uppercase tracking-widest mb-4">Completion Status</p>
             <div className="flex flex-col gap-3">
               {[
-                { label: "Student Profiling", done: !!projectData.discipline },
+                { label: "Student Profiling", done: !!projectData.department },
                 { label: "Topic Prompting", done: !!projectData.selectedTopic },
                 { label: "Topic Development", done: !!projectData.topicDevelopment?.problem },
                 { label: "Research Kickstart", done: !!projectData.researchKickstart?.keyConcepts },

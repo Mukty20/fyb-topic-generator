@@ -9,6 +9,7 @@ export interface Topic {
   title: string;
   description: string;
   relevance: string;
+  problemGrounding: string;
 }
 
 export interface RoadmapStep {
@@ -37,7 +38,7 @@ export interface TimelinePhase {
   phase: string;
   activity: string;
   duration: string;
-  deliverable: string[];
+  deliverables: string[];
   tips: string;
 }
 
@@ -45,34 +46,15 @@ export interface ProjectData {
   id?: string;
   uid: string;
 
-  // Core discipline
-  discipline: string;
+  department: string;
   areaOfInterest: string;
-
-  // Motivation & authenticity signals
-  sparkMotivation: string;
-  projectWhy: string;
-  careerDirection: string;
-
-  // Skill & risk signals
-  confidentSkill: string;
   tools: string;
-  stretchAppetite: string;
-
-  // The real-world problem
-  realWorldProblem: string;
-  whoElseAffected: string;
-  problemIntensity: string;
-
-  // Practical context
-  resourceReality: string;
-
-  // Working style
-  preference: string;
-  structurePreference: string;
+  skillLevel: number; // 1-5, forced to 1 for true beginners
+  beginnerPreference?: string; // only present when the student has no prior programming experience
+  hardware: string;
+  learningStyle: string;
   complexityLevel: "Basic" | "Intermediate" | "Advanced";
 
-  // Generated outputs
   generatedTopics: Topic[];
   selectedTopic: string;
   topicDevelopment: TopicDevelopment;

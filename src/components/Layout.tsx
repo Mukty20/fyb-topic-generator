@@ -1,4 +1,5 @@
-import { useState, ReactNode } from "react";
+import { useState } from "react";
+import type { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { signOut } from "firebase/auth";
@@ -105,13 +106,23 @@ const Layout = ({ children, activePath, variant = "default" }: LayoutProps) => {
           {navItems.map((item) => {
             const active = item.path === activePath;
             return (
-              <button
-                key={item.label}
-                onClick={() => goTo(item.path)}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-left transition ${
-                  active ? "bg-gray-100 text-gray-900 font-medium" : "text-gray-500 hover:bg-gray-50"
-                }`}
-              >
+             <button
+  key={item.label}
+  onClick={() => {
+    if (item.path === "/stage1") {
+      const confirmed = window.confirm(
+        "Revisiting Student Profiling will take you through the questions again. Your current progress stays saved until you finish and submit new answers. Continue?"
+      );
+      if (!confirmed) return;
+    }
+    goTo(item.path);
+  }}
+  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-left transition ${
+    active
+      ? "bg-gray-100 text-gray-900 font-medium"
+      : "text-gray-500 hover:bg-gray-50"
+  }`}
+>
                 <span className={`w-1.5 h-1.5 rounded-full ${active ? "bg-gray-900" : "bg-gray-300"}`} />
                 {item.label}
               </button>
