@@ -137,7 +137,7 @@ export const generateTopics = async (profile: StudentProfile): Promise<string> =
 export const generateTopicDevelopment = async (
   selectedTopic: string, discipline: string, complexityLevel: string
 ): Promise<string> => {
-  console.log("Developing topic:", selectedTopic);
+  console.log("Developing topic:", selectedTopic, "| complexity:", complexityLevel);
   return JSON.stringify({
     problem: `Many ${discipline} students and institutions struggle with inefficient processes that "${selectedTopic}" aims to solve.`,
     affected: `Final year ${discipline} students, lecturers, and administrative staff at Nigerian tertiary institutions.`,
