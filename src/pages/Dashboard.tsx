@@ -31,7 +31,7 @@ const Dashboard = () => {
   }, [user]);
 
   const firstName = user?.displayName?.split(" ")[0] || "Student";
-  const hasStarted = projectData && projectData.discipline;
+  const hasStarted = projectData && projectData.department; 
 
   return (
     <Layout activePath="/dashboard">
@@ -125,7 +125,7 @@ const Dashboard = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { label: "Discipline", value: projectData.discipline },
+                { label: "Discipline", value: projectData.department},
                 { label: "Area of Interest", value: projectData.areaOfInterest },
                 { label: "Tools", value: projectData.tools },
                 { label: "Complexity", value: projectData.complexityLevel },
