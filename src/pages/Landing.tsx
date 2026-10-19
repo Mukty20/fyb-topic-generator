@@ -16,20 +16,20 @@ const Landing = () => {
     <div className="min-h-screen bg-[#f5f5f0] text-gray-900">
 
       {/* Navbar */}
-      <nav className="px-8 py-5 flex justify-between items-center max-w-6xl mx-auto">
+      <nav className="py-5 flex justify-between items-center max-w-6xl mx-auto">
         <h1 className="text-base font-medium tracking-tight text-gray-800">
           FYP Topic Generator
         </h1>
         <div className="flex gap-3">
           <button
             onClick={() => navigate("/login")}
-            className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 transition"
+            className="px-4 py-2 text-sm text-gray-500 hover:text-gray-900 transition"
           >
             Login
           </button>
           <button
             onClick={() => navigate("/signup")}
-            className="px-4 py-2 text-sm bg-gray-900 text-white rounded-lg hover:bg-gray-700 transition"
+            className="px-4 py-2 text-sm bg-gray-900 text-white rounded-lg hover:bg-gray-600 transition"
           >
             Get Started
           </button>
@@ -50,13 +50,13 @@ const Landing = () => {
         <div className="flex gap-4 justify-center">
           <button
             onClick={() => navigate("/signup")}
-            className="px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition"
+            className="px-6 py-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition"
           >
             Begin guided setup
           </button>
           <button
             onClick={() => navigate("/login")}
-            className="px-6 py-3 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-100 transition"
+            className="px-6 py-3 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-200 transition"
           >
             I already have an account
           </button>
@@ -64,7 +64,7 @@ const Landing = () => {
       </section>
 
       {/* Divider */}
-      <div className="border-t border-gray-900" />
+      <div className="border-t border-gray-500" />
 
       {/* Features */}
       <section className="px-8 py-20">
@@ -76,7 +76,7 @@ const Landing = () => {
             },
             {
               title: "Tailored topic suggestions",
-              desc: "Five project topics prompted uniquely from your interests, skills, and goals   no two students get the same result not generic, not recycled, built around you."
+              desc: "Three project topics prompted uniquely from your interests, skills, and goals   no two students get the same result not generic, not recycled, built around you."
             },
             {
               title: "Roadmap you can follow",
@@ -87,7 +87,7 @@ const Landing = () => {
               <h4 className="text-base font-semibold text-gray-900 mb-3">
                 {f.title}
               </h4>
-              <p className="text-sm text-gray-500 leading-relaxed">
+              <p className="text-sm text-gray-600 leading-relaxed">
                 {f.desc}
               </p>
             </div>
@@ -106,38 +106,38 @@ const Landing = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
           {[
             {
-              title: "5 personalized topics",
+              title: "3 Personalized Topics",
               desc: "Generated based on your interests, tools, and complexity preference."
             },
             {
-              title: "Topic development roadmap",
+              title: "Topic Development Roadmap",
               desc: "Step by step breakdown of how to approach and build your chosen topic."
             },
             {
-              title: "Research kickstart",
+              title: "Research Kickstart",
               desc: "Key concepts, related areas, and Google Scholar search terms."
             },
             {
-              title: "Project timeline",
+              title: "Project Timeline",
               desc: "Phase by phase plan from proposal to submission."
             },
             {
-              title: "Personal dashboard",
+              title: "Personal Dashboard",
               desc: "All your content saved and accessible anytime from your account."
             },
             {
-              title: "PDF download",
+              title: "PDF Download",
               desc: "Export your complete project plan to share with your supervisor."
             }
           ].map((item) => (
             <div
               key={item.title}
-              className="p-6 bg-[#d4dbdb] rounded-2xl border border-gray-100 text-center hover:shadow-sm transition"
+              className="p-6 bg-[#ccd2d2] rounded-2xl border border-gray-100 text-center hover:shadow-sm transition"
             >
               <h4 className="text-sm font-semibold text-gray-900 mb-2">
                 {item.title}
               </h4>
-              <p className="text-xs text-gray-500 leading-relaxed">
+              <p className="text-xs text-gray-700 leading-relaxed">
                 {item.desc}
               </p>
             </div>

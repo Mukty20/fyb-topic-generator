@@ -54,7 +54,7 @@ const areaOptionsByDepartment: Record<string, string[]> = {
 const departmentQuestion: Question = {
   id: "department",
   type: "choice",
-  prompt: "Let's start — what's your department?",
+  prompt: "Let's start  what's your department?",
   options: Object.keys(areaOptionsByDepartment),
   ack: (v) => `${v} got it. Let's narrow that down to something specific.`,
 };

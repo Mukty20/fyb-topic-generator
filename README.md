@@ -13,11 +13,11 @@ before one gets approved, with supervisors unable to give every student
 the individual guidance the topic selection process actually needs. This
 system replaces that trial-and-error cycle with a guided, prompt-driven
 flow that produces topic suggestions tailored to each student's actual
-department, skills, and hardware — not generic, recycled ideas.
+department, skills, and hardware not generic, recycled ideas.
 
-## How It Works — Six Stages
+## How It Works Six Stages
 
-1. **Student Profiling** — a conversational, chat-style interview of six
+1. **Student Profiling**  a conversational, chat-style interview of six
    chained questions: department, area of interest (filtered by
    department), main tool/language, programming proficiency, hardware
    available, and preferred learning style. Students with no prior
@@ -26,27 +26,27 @@ department, skills, and hardware — not generic, recycled ideas.
    Target complexity is derived automatically from proficiency and
    hardware rather than self-declared.
 
-2. **Topic Prompting** — three project topics generated from the full
+2. **Topic Prompting** three project topics generated from the full
    profile, each with a description, a relevance explanation tied
    directly to the student's own answers, and a "Problem Grounding"
    note explaining in general terms why the problem area is worth
    addressing without inventing citations. Students can reprompt for
    a fresh set in one action.
 
-3. **Topic Development** — once a topic is selected, the system breaks
+3. **Topic Development** once a topic is selected, the system breaks
    it down into problem, affected parties, solution, and differentiation,
    plus a development roadmap with step-by-step guidelines and time
    estimates.
 
-4. **Research Kickstart** — key concepts, related technology areas, and
+4. **Research Kickstart** key concepts, related technology areas, and
    five Google Scholar-linked search terms to start the literature
    review with real, verifiable sources.
 
-5. **Project Timeline** — a six-phase project plan scaled to the
+5. **Project Timeline** a six-phase project plan scaled to the
    derived complexity level, each phase with concrete deliverables and
    a practical tip.
 
-6. **Dashboard & Download** — an adaptive dashboard (different views for
+6. **Dashboard & Download** an adaptive dashboard (different views for
    new vs. returning students) summarizing progress, with a one-click
    PDF export of the complete Personal Project Plan.
 
@@ -98,7 +98,7 @@ VITE_CLAUDE_API_KEY=
 Built as a final year Computer Science project at Kaduna State
 University, Department of Informatics, under the title *"Design and
 Implementation of a Final Year Topic Prompting Generator System."*
-Full academic documentation (Chapters 1–4) is maintained separately
+Full academic documentation (Chapters 1–5) is maintained separately
 following departmental project guidelines.
 
 mukty_codes
