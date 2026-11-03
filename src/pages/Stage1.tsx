@@ -120,8 +120,8 @@ const hardwareQuestion: Question = {
     v.includes("Low-spec")
       ? "Thanks for flagging that we'll make sure nothing suggested needs more than your machine can handle."
       : v.includes("cloud")
-      ? "Good to know — that opens up more compute-heavy options if you want them."
-      : "Noted — that gives us a realistic picture of what you can comfortably run.",
+      ? "Good to know that opens up more compute-heavy options if you want them."
+      : "Noted that gives us a realistic picture of what you can comfortably run.",
 };
 
 const learningStyleQuestion: Question = {
@@ -206,14 +206,16 @@ const Stage1 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  useEffect(() => {
-    if (checkingExisting || hasExistingProfile) return;
-    if (!startInterview) return;
-    showTyping().then(() => {
-      setMessages([{ from: "system", text: resolvePrompt(getQuestionAt(0, {}), {}) }]);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checkingExisting, hasExistingProfile, startInterview]);
+ useEffect(() => {
+  if (checkingExisting) return;
+  const shouldShowChat = !hasExistingProfile || startInterview;
+  if (!shouldShowChat) return;
+  if (messages.length > 0) return; // already seeded
+  showTyping().then(() => {
+    setMessages([{ from: "system", text: resolvePrompt(getQuestionAt(0, {}), {}) }]);
+  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [checkingExisting, hasExistingProfile, startInterview]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });

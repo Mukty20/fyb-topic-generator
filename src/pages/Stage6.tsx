@@ -74,7 +74,7 @@ const Stage6 = () => {
         pdf.setFillColor(20, 20, 30);
         pdf.rect(margin, y - 5, maxWidth, 8, "F");
         pdf.setTextColor(255, 255, 255);
-        pdf.setFontSize(11);
+        pdf.setFontSize(12);
         pdf.setFont("Times New Roman", "bold");
         pdf.text(text.toUpperCase(), margin + 3, y);
         pdf.setTextColor(0, 0, 0);
@@ -85,7 +85,7 @@ const Stage6 = () => {
       pdf.setFont("Times New Roman", "bold");
       pdf.text("Personal Project Plan", margin, y);
       y += 8;
-      pdf.setFontSize(11);
+      pdf.setFontSize(12);
       pdf.setFont("Times New Roman", "normal");
       pdf.setTextColor(100, 100, 100);
       pdf.text(`Prepared for ${user?.displayName || "Student"}`, margin, y);

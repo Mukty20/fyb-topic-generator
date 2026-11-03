@@ -4,7 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { generateTopics } from "../utils/claudeApi";
-import { checkAndIncrementUsage } from "../utils/usageLimit";
+import { getIssuedTopicTitles, recordIssuedTopic } from "../utils/issuedTopic";
 import type { Topic } from "../types";
 import Layout from "../components/Layout";
 
@@ -46,17 +46,11 @@ const Stage2 = () => {
   const handlePrompt = async () => {
     if (!profile) return;
     setError("");
-    
-    const allowed = await checkAndIncrementUsage(user!.uid);
-    if (!allowed) {
-      setError("You've reached today's limit. Please try again tomorrow.");
-      return;
-    }
-
     setLoading(true);
 
     try {
-      const response = await generateTopics(profile);
+      const excludedTitles = await getIssuedTopicTitles(profile.department, profile.areaOfInterest);
+      const response = await generateTopics(profile, excludedTitles);
       const clean = response.replace(/```json|```/g, "").trim();
       const parsed = JSON.parse(clean);
       const generatedTopics: Topic[] = parsed.topics;
@@ -82,11 +76,23 @@ const Stage2 = () => {
     }
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (!selectedTopic) {
       setError("Please select a topic before continuing.");
       return;
     }
+
+    // Record this as issued so future students with the same department
+    // and area of interest don't get the exact same title suggested again.
+    try {
+      const alreadyIssued = await getIssuedTopicTitles(profile.department, profile.areaOfInterest);
+      if (!alreadyIssued.includes(selectedTopic)) {
+        await recordIssuedTopic(profile.department, profile.areaOfInterest, selectedTopic);
+      }
+    } catch (err) {
+      console.log("Record issued topic error:", err);
+    }
+
     navigate("/stage3");
   };
 
@@ -99,9 +105,9 @@ const Stage2 = () => {
     <Layout activePath="/stage2">
       <div className="mb-8">
         <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Stage 02</p>
-        <h2 className="text-2xl font-semibold text-gray-900 mb-2">Topics Prompting</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-2">Topic Prompting</h2>
         <p className="text-sm text-gray-400 leading-relaxed">
-          Based on your profile, the system will prompt 5 project topics
+          Based on your profile, the system will prompt 3 project topics
           uniquely tailored to your inputs. No two students get the same result.
         </p>
       </div>
@@ -110,16 +116,16 @@ const Stage2 = () => {
         <div className="bg-white rounded-2xl border border-gray-100 p-6 mb-6">
           <p className="text-xs text-gray-400 uppercase tracking-widest mb-4">Your profile summary</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {[
-  { label: "Department", value: profile.department },
-  { label: "Area of Interest", value: profile.areaOfInterest },
-  { label: "Tools", value: profile.tools },
-  profile.beginnerPreference
-    ? { label: "Learning Path", value: profile.beginnerPreference }
-    : { label: "Skill Level", value: profile.skillLevel ? `${profile.skillLevel}/5` : "" },
-  { label: "Hardware", value: profile.hardware },
-  { label: "Complexity", value: profile.complexityLevel },
-].map((item) => (
+            {[
+              { label: "Department", value: profile.department },
+              { label: "Area of Interest", value: profile.areaOfInterest },
+              { label: "Tools", value: profile.tools },
+              profile.beginnerPreference
+                ? { label: "Learning Path", value: profile.beginnerPreference }
+                : { label: "Skill Level", value: profile.skillLevel ? `${profile.skillLevel}/5` : "" },
+              { label: "Hardware", value: profile.hardware },
+              { label: "Complexity", value: profile.complexityLevel },
+            ].filter((item) => item.value).map((item) => (
               <div key={item.label}>
                 <p className="text-xs text-gray-400 mb-1">{item.label}</p>
                 <p className="text-sm font-medium text-gray-900">{item.value}</p>
@@ -130,7 +136,7 @@ const Stage2 = () => {
             onClick={() => navigate("/stage1")}
             className="mt-4 text-xs text-gray-400 hover:text-gray-700 transition"
           >
-            Edit profile
+           Edit profile
           </button>
         </div>
       )}
@@ -145,7 +151,7 @@ const Stage2 = () => {
         <div className="bg-white rounded-2xl border border-gray-100 p-6 md:p-8 text-center">
           <h3 className="text-base font-semibold text-gray-900 mb-2">Ready to prompt your topics</h3>
           <p className="text-sm text-gray-400 mb-6 max-w-sm mx-auto">
-            Click below to prompt 5 project topics based specifically on your profile inputs.
+            Click below to prompt 3 project topics based specifically on your profile inputs.
           </p>
           <button
             onClick={handlePrompt}
@@ -160,7 +166,7 @@ const Stage2 = () => {
       {prompted && topics.length > 0 && (
         <div>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-xs text-gray-400 uppercase tracking-widest">Your 5 prompted topics</p>
+            <p className="text-xs text-gray-400 uppercase tracking-widest">Your 3 prompted topics</p>
             <button
               onClick={handleReprompt}
               disabled={loading}
@@ -189,9 +195,14 @@ const Stage2 = () => {
                 </div>
                 <h3 className="text-sm font-semibold text-gray-900 mb-2">{topic.title}</h3>
                 <p className="text-xs text-gray-400 leading-relaxed mb-3">{topic.description}</p>
-                <div className="border-t border-gray-50 pt-3">
+                <div className="border-t border-gray-50 pt-3 mb-3">
                   <p className="text-xs text-gray-400">
                     <span className="text-gray-600 font-medium">Why it matters:</span> {topic.relevance}
+                  </p>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <p className="text-xs text-gray-400">
+                    <span className="text-gray-600 font-medium">Problem grounding:</span> {topic.problemGrounding}
                   </p>
                 </div>
               </div>

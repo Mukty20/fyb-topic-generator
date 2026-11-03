@@ -13,7 +13,7 @@ const Landing = () => {
   }, [user]);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f0] text-gray-900">
+    <div className="min-h-screen bg-[#f2f0f5] text-gray-900">
 
       {/* Navbar */}
       <nav className="py-5 flex justify-between items-center max-w-6xl mx-auto">
